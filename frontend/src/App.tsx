@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
 import ApplicationForm from "./pages/ApplicationForm";
+import MyApplications from "./pages/MyApplications";
 
 function App() {
   return (
@@ -35,6 +36,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <ApplicationForm />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/applications"
+            element={
+              <ProtectedRoute>
+                <MyApplications />
               </ProtectedRoute>
             }
           />

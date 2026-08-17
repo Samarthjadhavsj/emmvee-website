@@ -29,6 +29,12 @@ function Navbar() {
         <Link to="/careers">Careers</Link>
         <Link to="/contact">Contact</Link>
 
+        {authenticated && (
+          <Link to="/applications">
+            My Applications
+          </Link>
+        )}
+
         {!authenticated && (
           <>
             <Link to="/login">Login</Link>
@@ -37,7 +43,9 @@ function Navbar() {
         )}
 
         {authenticated && user?.role === "ADMIN" && (
-          <Link to="/admin">Admin Dashboard</Link>
+          <Link to="/admin">
+            Admin Dashboard
+          </Link>
         )}
 
         {authenticated && (
