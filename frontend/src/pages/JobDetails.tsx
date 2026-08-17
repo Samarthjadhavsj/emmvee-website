@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { getJobById } from "../services/jobService";
 import type { Job } from "../services/jobService";
+import { isAuthenticated } from "../services/authService";
 
 function JobDetails() {
   const { id } = useParams();
@@ -60,6 +61,8 @@ function JobDetails() {
     );
   }
 
+  const loggedIn = isAuthenticated();
+
   return (
     <section className="job-details-page">
       <div className="job-details-container">
@@ -95,22 +98,32 @@ function JobDetails() {
           <h2>About the role</h2>
 
           <p>
-            Join the Emmvee team and contribute to innovative solutions
-            while building your career in a collaborative environment.
+            Join the Emmvee team and contribute to innovative
+            solutions while building your career in a
+            collaborative environment.
           </p>
 
           <p>
-            This position is based in {job.location} and is part of the{" "}
-            {job.department} department.
+            This position is based in {job.location} and is part
+            of the {job.department} department.
           </p>
         </div>
 
-        <Link
-          to="/login"
-          className="apply-button"
-        >
-          Login to Apply
-        </Link>
+        {loggedIn ? (
+          <Link
+            to={`/careers/${job.id}/apply`}
+            className="apply-button"
+          >
+            Apply Now
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="apply-button"
+          >
+            Login to Apply
+          </Link>
+        )}
 
       </div>
     </section>

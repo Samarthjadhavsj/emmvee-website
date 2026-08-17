@@ -13,6 +13,7 @@ import JobDetails from "./pages/JobDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
+import ApplicationForm from "./pages/ApplicationForm";
 
 function App() {
   return (
@@ -28,6 +29,15 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+          <Route
+            path="/careers/:id/apply"
+            element={
+              <ProtectedRoute>
+                <ApplicationForm />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/admin"
