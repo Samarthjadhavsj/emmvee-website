@@ -1,4 +1,5 @@
 import { getToken } from "./authService";
+import { API_BASE_URL } from "./apiConfig";
 
 export interface AdminApplication {
   id: number;
@@ -20,7 +21,7 @@ export async function getAllApplications(): Promise<AdminApplication[]> {
   }
 
   const response = await fetch(
-    "http://localhost:8080/api/admin/applications",
+    `${API_BASE_URL}/admin/applications`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -46,7 +47,7 @@ export async function updateApplicationStatus(
   }
 
   const response = await fetch(
-    `http://localhost:8080/api/admin/applications/${id}/status`,
+    `${API_BASE_URL}/admin/applications/${id}/status`,
     {
       method: "PUT",
       headers: {

@@ -1,4 +1,5 @@
 import { getToken } from "./authService";
+import { API_BASE_URL } from "./apiConfig";
 
 export interface ApplicationRequest {
   jobId: number;
@@ -16,7 +17,7 @@ export async function applyForJob(
   }
 
   const response = await fetch(
-    "http://localhost:8080/api/applications",
+    `${API_BASE_URL}/applications`,
     {
       method: "POST",
       headers: {

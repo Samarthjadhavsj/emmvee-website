@@ -1,7 +1,7 @@
 import { getToken } from "./authService";
 import type { Job } from "./jobService";
 
-const API_BASE_URL = "http://localhost:8080/api";
+import { API_BASE_URL } from "./apiConfig";
 
 export interface JobRequest {
   title: string;
