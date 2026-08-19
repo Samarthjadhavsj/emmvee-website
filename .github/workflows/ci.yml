@@ -121,3 +121,5 @@ jobs:
 
       - name: Push frontend image
         run: docker push ghcr.io/samarthjadhavsj/emmvee-frontend:latest
+
+# GHCR frontend build fix
