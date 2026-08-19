@@ -114,10 +114,7 @@ jobs:
         run: docker build -t ghcr.io/samarthjadhavsj/emmvee-backend:latest ./backend
 
       - name: Build frontend image
-        run: docker build \
-          --build-arg VITE_API_BASE_URL=http://localhost:8081/api \
-          -t ghcr.io/samarthjadhavsj/emmvee-frontend:latest \
-          ./frontend
+        run: docker build --build-arg VITE_API_BASE_URL=http://localhost:8081/api -t ghcr.io/samarthjadhavsj/emmvee-frontend:latest ./frontend
 
       - name: Push backend image
         run: docker push ghcr.io/samarthjadhavsj/emmvee-backend:latest
