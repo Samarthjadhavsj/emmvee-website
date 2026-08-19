@@ -1,4 +1,5 @@
 import { getToken } from "./authService";
+import { API_BASE_URL } from "./apiConfig";
 
 export interface MyApplication {
   id: number;
@@ -20,7 +21,7 @@ export async function getMyApplications(): Promise<MyApplication[]> {
   }
 
   const response = await fetch(
-    "http://localhost:8080/api/applications/my",
+    `${API_BASE_URL}/applications/my`,
     {
       method: "GET",
       headers: {

@@ -16,7 +16,7 @@ export interface JobPage {
   last: boolean;
 }
 
-const API_BASE_URL = "http://localhost:8080/api";
+import { API_BASE_URL } from "./apiConfig";
 
 export async function getJobs(
   search = "",

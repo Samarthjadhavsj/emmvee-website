@@ -17,7 +17,7 @@ export interface AuthResponse {
   role: string;
 }
 
-const API_BASE_URL = "http://localhost:8080/api";
+import { API_BASE_URL } from "./apiConfig";
 
 export async function registerUser(
   data: RegisterRequest
