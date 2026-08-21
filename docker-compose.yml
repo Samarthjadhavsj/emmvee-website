@@ -10,6 +10,12 @@ services:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
 
   backend:
     build:
@@ -22,7 +28,8 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   frontend:
     build:
