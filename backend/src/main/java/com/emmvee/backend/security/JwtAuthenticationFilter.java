@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,13 +27,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger logger =
             LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
-    private static final String SECRET =
-            "EmmveeCareersJwtSecretKeyForDevelopmentOnly123456789";
+    private final SecretKey secretKey;
 
-    private final SecretKey secretKey =
-            Keys.hmacShaKeyFor(
-                    SECRET.getBytes(StandardCharsets.UTF_8)
-            );
+    public JwtAuthenticationFilter(
+            @Value("${jwt.secret:EmmveeCareersJwtSecretKeyForDevelopmentOnly123456789}") String secret) {
+        this.secretKey = Keys.hmacShaKeyFor(
+                secret.getBytes(StandardCharsets.UTF_8)
+        );
+    }
 
     @Override
     protected void doFilterInternal(
